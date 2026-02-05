@@ -1,11 +1,12 @@
 import { env } from "cloudflare:workers";
-import { routeAgentRequest } from "agents";
+import { getAgentByName } from "agents";
 import type { APIRoute } from "astro";
 
 export const prerender = false;
 
 // Handle all HTTP methods
-export const ALL: APIRoute = async ({ request, locals }) => {
+export const ALL: APIRoute = async ({ request, locals, params }) => {
+  const {name} = params as {name: string};
   // routeAgentRequest automatically handles /agents/:agent/:name pattern
   // Rewrite the URL to match the expected pattern
   const url = new URL(request.url);
@@ -20,7 +21,19 @@ export const ALL: APIRoute = async ({ request, locals }) => {
     // @ts-expect-error - duplex is a valid option
     duplex: "half"
   });
+  console.log(request.url);
 
+
+
+    // Named addressing
+    // Best for: convenience method for creating or retrieving an agent by name/ID.
+    // Bringing your own routing, middleware and/or plugging into an existing
+    // application or framework.
+    let namedAgent = await getAgentByName(env.Chat, name);
+    console.log(namedAgent);
+    // Pass the incoming request straight to your Agent
+    let namedResp = namedAgent.fetch(request);
+    return namedResp;
 
     // TODO(fks): Uncomment `routeAgentRequest()` call to add this back in
     // Currently, chat does not work.
@@ -45,12 +58,8 @@ export const ALL: APIRoute = async ({ request, locals }) => {
 //     at successSteps (/Users/fschott/Code/agents-starter/node_modules/undici/lib/web/fetch/body.js:463:23)
 //     at readAllBytes (/Users/fschott/Code/agents-starter/node_modules/undici/lib/web/fetch/util.js:998:9)
 //     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
-
-
-
-
-  return (
-//   (await routeAgentRequest(modifiedRequest, env)) ||
-    Response.json({ error: "Not found" }, { status: 404 })
-  );
+//   return (
+// //   (await routeAgentRequest(modifiedRequest, env)) ||
+//     Response.json({ error: "Not found" }, { status: 404 })
+//   );
 };

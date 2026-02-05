@@ -5,7 +5,7 @@
 import { tool, type ToolSet } from "ai";
 import { z } from "zod/v3";
 
-import type { Chat } from "./server";
+import type { Chat } from "./worker";
 import { getCurrentAgent } from "agents";
 import { scheduleSchema } from "agents/schedule";
 
