@@ -7,11 +7,6 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare({
     imageService: "compile",
-    platformProxy: {
-      enabled: true,
-      configPath: "wrangler.jsonc",
-      persist: { path: "./.wrangler/state/v3" }
-    },
   }),
   integrations: [react()],
   vite: {
