@@ -1,20 +1,23 @@
 ---
-import '../styles.css';
-import {Root} from '../root';
+import "../styles.css";
+import { Root } from "../root";
 
 // This makes the page server-rendered
 export const prerender = false;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="AI-powered chat agent built with Cloudflare Agents" />
+    <meta
+      name="description"
+      content="AI-powered chat agent built with Cloudflare Agents"
+    />
     <meta name="theme-color" content="#000000" />
     <title>AI Chat Agent</title>
-    
+
     <script is:inline>
       document.documentElement.classList.toggle(
         "dark",
@@ -30,7 +33,9 @@ export const prerender = false;
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div class="bg-neutral-50 text-base text-neutral-900 antialiased transition-colors selection:bg-blue-700 selection:text-white dark:bg-neutral-950 dark:text-neutral-100">
+    <div
+      class="bg-neutral-50 text-base text-neutral-900 antialiased transition-colors selection:bg-blue-700 selection:text-white dark:bg-neutral-950 dark:text-neutral-100"
+    >
       <Root client:only="react" />
     </div>
   </body>

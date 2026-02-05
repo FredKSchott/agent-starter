@@ -8,8 +8,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
-    "preview": "wrangler pages dev ./dist",
-    "deploy": "astro build && wrangler pages deploy ./dist",
+    "preview": "astro build && astro preview",
+    "deploy": "astro build && wrangler deploy",
     "types": "wrangler types && astro sync",
     "check": "astro check"
   },
@@ -23,14 +23,13 @@
   "devDependencies": {
     "@astrojs/cloudflare": "beta",
     "@astrojs/react": "beta",
-    "@cloudflare/workers-types": "^4.20251231.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.0.0-beta.7",
+    "astro": "beta",
     "typescript": "^5.9.3",
-    "wrangler": "4.56.0"
+    "wrangler": "4.62.0"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.2",
@@ -51,6 +50,7 @@
     "streamdown": "^1.6.10",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
-    "workers-ai-provider": "^3.0.2"
+    "workers-ai-provider": "^3.0.2",
+    "zod": "4.3.6"
   }
 }
